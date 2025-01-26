@@ -1,0 +1,34 @@
+﻿@page
+@model Kitapyurdu_Clone.Pages.dergiModel
+@{
+    ViewData["Title"] = "Dergi Çeşitleri ve Fiyatları";
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="/css/dergi.css" />
+}
+
+<main>
+    <div class="dergi-list-container">
+        @foreach (var magazine in Model.Magazines)
+        {
+            <div class="magazine-card">
+                <a href="/dergiDetay/@magazine.DergiID">
+                    <img src="@magazine.ImagePath" alt="@magazine.Title" style="width:150px; height:auto;">
+                    <h3>@magazine.Title</h3>
+                    <p>@magazine.Price ₺</p>
+                </a>
+            </div>
+        }
+    </div>
+</main>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('.cart').addEventListener('click', function () {
+                window.location.href = 'sepetim.html';
+            });
+        });
+    </script>
+}

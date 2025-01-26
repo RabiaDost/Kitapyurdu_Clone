@@ -1,0 +1,32 @@
+﻿@page "{categoryId:int}"
+@model Kitapyurdu_Clone.Pages.CategoryDetailModel
+@{
+    ViewData["Title"] = Model.CategoryName;
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="/css/CategoriesDetail.css" />
+}
+
+<main>
+    <h2>@Model.CategoryName</h2>
+
+    <div class="books-container">
+        @if (Model.Books.Count > 0)
+        {
+            foreach (var book in Model.Books)
+            {
+                <div class="book-card">
+                    <img src="@book.bookImage" alt="@book.Title" class="book-image" />
+                    <h3>@book.Title</h3>
+                    <p>Yazar: @book.Author</p>
+                    <p>Fiyat: @book.Price.ToString("C")</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Bu kategoride henüz kitap bulunmamaktadır.</p>
+        }
+    </div>
+</main>

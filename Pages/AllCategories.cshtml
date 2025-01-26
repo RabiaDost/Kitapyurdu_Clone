@@ -1,0 +1,154 @@
+﻿@page
+@model Kitapyurdu_Clone.Pages.AllCategoriesModel
+@{
+    ViewData["Title"] = "Tüm Kategoriler";
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="/css/AllCategories.css" />
+}
+
+<main>
+    <section class="categories">
+        <h2>Kitap Kategorileri</h2>
+        <div class="categori-container">
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="1">
+                    <img src="images/kategori-akademik.png" alt="Akademik">
+                    <p>Akademik</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="2">
+                    <img src="images/kategori-bilgisayar.png" alt="Bilgisayar">
+                    <p>Bilgisayar</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="3">
+                    <img src="images/kategori-bilim-muhendislik.png" alt="Bilim&Mühendislik">
+                    <p>Bilim & Mühendislik</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="4">
+                    <img src="images/kategori-cocuk-kitaplari.png" alt="Çocuk Kitapları">
+                    <p>Çocuk Kitapları</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="5">
+                    <img src="images/kategori-ders-kitaplari.png" alt="Ders Kitapları">
+                    <p>Ders Kitapları</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="6">
+                    <img src="images/kategori-edebiyat.png" alt="Edebiyat">
+                    <p>Edebiyat</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="7">
+                    <img src="images/kategori-egitim.png" alt="Eğitim">
+                    <p>Eğitim</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="8">
+                    <img src="images/kategori-eglence-mizah.png" alt="Eğlence-Mizah">
+                    <p>Eğlence-Mizah</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId=""9>
+                    <img src="images/kategori-felsefe-dusunce.png" alt="Felsefe-Düşünce">
+                    <p>Felsefe-Düşünce</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="10">
+                    <img src="images/kategori-hobi.png" alt="Hobi">
+                    <p>Hobi</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="11">
+                    <img src="images/kategori-hukuk.png" alt="Hukuk">
+                    <p>Hukuk</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="12">
+                    <img src="images/kategori-kisisel-gelisim.png" alt="Kişisel Gelişim">
+                    <p>Kişisel Gelişim</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="13">
+                    <img src="images/kategori-kultur.png" alt="Kültür">
+                    <p>Kültür</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="14">
+                    <img src="images/kategori-muzik.png" alt="Müzik">
+                    <p>Müzik</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="15">
+                    <img src="images/kategori-psikoloji.png" alt="Psikoloji">
+                    <p>Psikoloji</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="16">
+                    <img src="images/kategori-saglik-tip.png" alt="Sağlık-Tıp">
+                    <p>Sağlık-Tıp</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="17">
+                    <img src="images/kategori-sanat.png" alt="Sanat">
+                    <p>Sanat</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="18">
+                    <img src="images/kategori-sinav.png" alt="Sınav">
+                    <p>Sınav</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="19">
+                    <img src="images/kategori-siyaset.png" alt="Siyaset">
+                    <p>Siyaset</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="20">
+                    <img src="images/kategori-sosyoloji.png" alt="Sosyoloji">
+                    <p>Sosyoloji</p>
+                </a>
+            </div>
+            <div class="categori-card">
+                <a asp-page="/CategoryDetail" asp-route-categoryId="21">
+                    <img src="images/kategori-spor.png" alt="Spor">
+                    <p>Spor</p>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('.cart').addEventListener('click', function () {
+                window.location.href = 'sepetim.html';
+            });
+        });
+    </script>
+}
+

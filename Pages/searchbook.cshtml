@@ -1,0 +1,46 @@
+﻿@page
+@model Kitapyurdu_Clone.Pages.searchbookModel
+@{
+    Layout = "_Layout";
+
+    string searchTerm = Request.Query["search"].ToString() ?? "";
+
+    var books = ViewData["Books"] as List<SearchBook>;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="/css/SearchBook.css" />
+}
+<head>
+    <title>@Model..Title ?? "Kitap Bulunamadı"</title>
+</head>
+<section>
+
+    @if (books != null &&  books.Any())
+    {
+        <h2>Sonuçlar:</h2>
+        <ul>
+            @foreach (var book in books)
+            {
+                <li>
+                    <div class="search-details" style="margin-bottom: 20px;">
+                        <h3>@book.Title</h3>
+                        <img src="@book.BookImage" alt="@book.Title" style="width: 200px; height: auto;" />
+                        <p><strong>Yazar:</strong> @book.Author</p>
+                        <p><strong>Fiyat:</strong> @string.Format("{0:C}", book.Price)</p>
+                        <p>@book.Description</p>
+                    </div>
+                </li>
+            }
+        </ul>
+
+    }
+    else if (!string.IsNullOrWhiteSpace(searchTerm))
+    {
+        <p>Hiçbir sonuç bulunamadı.</p>
+    }
+    else
+    {
+        <p>Aramak istediğiniz kitap adını, yazarı veya yayınevini girin.</p>
+    }
+</section>

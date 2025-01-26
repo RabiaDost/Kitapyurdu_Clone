@@ -1,0 +1,301 @@
+﻿@page
+@model Kitapyurdu_Clone.Pages.kitapModel
+@{
+    ViewData["Title"] = "Kitaplar";
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="/css/kitap.css" />
+}
+<main>
+    <div class="book-list-container">
+        <div class="book-card" data-id="2">
+            <img src="/images/insaninevrimi.jpg" alt="İnsanın Evrimi: Bir Varoluş Yolculuğu">
+            <h3>İnsanın Evrimi: Bir Varoluş Yolculuğu</h3>
+            <p>₺56,71</p>
+        </div>
+        <div class="book-card" data-id="3">
+            <img src="/images/gece-yarisi-kutuphanesi.jpg" alt="Gece Yarısı Kütüphanesi">
+            <h3>Gece Yarısı Kütüphanesi</h3>
+            <p>₺147,18</p>
+        </div>
+        <div class="book-card" data-id="4">
+            <img src="/images/insanligimi-yitirirken.jpg" alt="İnsanlığımı Yitirirken">
+            <h3>İnsanlığımı Yitirirken</h3>
+            <p>₺26,00</p>
+        </div>
+        <div class="book-card" data-id="5">
+            <img src="/images/iyi-hissetmek.jpg" alt="İyi Hissetmek">
+            <h3>İyi Hissetmek</h3>
+            <p>₺310,00</p>
+        </div>
+        <div class="book-card" data-id="6">
+            <img src="/images/puslu-kitalar-atlasi.jpg" alt="Puslu Kıtalar Atlası">
+            <h3>Puslu Kıtalar Atlası</h3>
+            <p>₺156,85</p>
+        </div>
+        <div class="book-card" data-id="7">
+            <img src="/images/metafor.jpg" alt="Metafor">
+            <h3>Metafor</h3>
+            <p>₺107,00</p>
+        </div>
+        <div class="book-card" data-id="8">
+            <img src="/images/nietzsche-agladiginde.jpg" alt="Nietzsche Ağladığında">
+            <h3>Nietzsche Ağladığında</h3>
+            <p>₺215,00</p>
+        </div>
+        <div class="book-card" data-id="9">
+            <img src="/images/korluk.jpg" alt="Körlük">
+            <h3>Körlük</h3>
+            <p>₺166,42</p>
+        </div>
+        <div class="book-card" data-id="10">
+            <img src="/images/atomik-aliskanliklar.jpg" alt="Atomik Alışkanlıklar">
+            <h3>Atomik Alışkanlıklar</h3>
+            <p>₺220,19</p>
+        </div>
+        <div class="book-card" data-id="11">
+            <img src="/images/insanin-anlam-arayisi.jpg" alt="İnsanın Anlam Arayışı">
+            <h3>İnsanın Anlam Arayışı</h3>
+            <p>₺117,15</p>
+        </div>
+        <div class="book-card" data-id="12">
+            <img src="/images/bir-yazilimcinin-yol-haritasi.jpg" alt="Bir Yazılımcının Yol Haritası">
+            <h3>Bir Yazılımcının Yol Haritası</h3>
+            <p>₺280,00</p>
+        </div>
+        <div class="book-card" data-id="13">
+            <img src="/images/momo.jpg" alt="Momo">
+            <h3>Momo</h3>
+            <p>₺137,00</p>
+        </div>
+        <div class="book-card" data-id="14">
+            <img src="/images/yuzyillik-yalnizlik.jpg" alt="Yüzyıllık Yalnızlık">
+            <h3>Yüzyıllık Yalnızlık</h3>
+            <p>₺185,00</p>
+        </div>
+        <div class="book-card" data-id="15">
+            <img src="/images/saatleri-ayarlama-enstitusu.jpg" alt="Saatleri Ayarlama Enstitüsü">
+            <h3>Saatleri Ayarlama Enstitüsü</h3>
+            <p>₺200,00</p>
+        </div>
+        <div class="book-card" data-id="16">
+            <img src="/images/insanciklar.jpg" alt="İnsancıklar">
+            <h3>İnsancıklar</h3>
+            <p>₺18,00</p>
+        </div>
+        <div class="book-card" data-id="18">
+            <img src="/images/seker-portakali.jpg" alt="Şeker Portakalı">
+            <h3>Şeker Portakalı</h3>
+            <p>₺95,00</p>
+        </div>
+        <div class="book-card" data-id="19">
+            <img src="/images/simyaci.jpg" alt="Simyacı">
+            <h3>Simyacı</h3>
+            <p>₺98,00</p>
+        </div>
+        <div class="book-card" data-id="20">
+            <img src="/images/icimizdeki-muzik.jpg" alt="İçimizdeki Müzik">
+            <h3>İçimizdeki Müzik</h3>
+            <p>₺144,00</p>
+        </div>
+        <div class="book-card" data-id="21">
+            <img src="/images/zeytindagi.jpg" alt="Zeytindağı">
+            <h3>Zeytindağı</h3>
+            <p>₺70,00</p>
+        </div>
+        <div class="book-card" data-id="22">
+            <img src="/images/insan-olmak.jpg" alt="İnsan Olmak">
+            <h3>İnsan Olmak</h3>
+            <p>₺117,80</p>
+        </div>
+        <div class="book-card" data-id="23">
+            <img src="/images/toprak-ana.jpg" alt="Toprak Ana">
+            <h3>Toprak Ana</h3>
+            <p>₺43,10</p>
+        </div>
+        <div class="book-card" data-id="24">
+            <img src="/images/serenad.jpg" alt="Serenad">
+            <h3>Serenad</h3>
+            <p>₺165,00</p>
+        </div>
+        <div class="book-card" data-id="25">
+            <img src="/images/kurtlarla-kosan-kadinlar.jpg" alt="Kurtlarla Koşan Kadınlar">
+            <h3>Kurtlarla Koşan Kadınlar</h3>
+            <p>₺239,00</p>
+        </div>
+        <div class="book-card" data-id="26">
+            <img src="/images/tutunamayanlar.jpg" alt="Tutunamayanlar">
+            <h3>Tutunamayanlar</h3>
+            <p>₺277,00</p>
+        </div>
+        <div class="book-card" data-id="27">
+            <img src="/images/böyle-buyurdu-zerdust.jpg" alt="Böyle Buyurdu Zerdüşt">
+            <h3>Böyle Buyurdu Zerdüşt</h3>
+            <p>₺24,90</p>
+        </div>
+        <div class="book-card" data-id="28">
+            <img src="/images/genc-wertherin-acilari.jpg" alt="Genç Werther'in Acıları">
+            <h3>Genç Werther'in Acıları</h3>
+            <p>₺13,00</p>
+        </div>
+        <div class="book-card" data-id="29">
+            <img src="/images/kirmizi-pazartesi.jpg" alt="Kırmızı Pazartesi">
+            <h3>Kırmızı Pazartesi</h3>
+            <p>₺78,00</p>
+        </div>
+        <div class="book-card" data-id="30">
+            <img src="/images/python-ile-makine-ogrenmesi.jpg" alt="Python ile Makine Öğrenmesi">
+            <h3>Python ile Makine Öğrenmesi</h3>
+            <p>₺182,00</p>
+        </div>
+        <div class="book-card" data-id="31">
+            <img src="/images/cesur-yeni-dunya.jpg" alt="Cesur Yeni Dünya">
+            <h3>Cesur Yeni Dünya</h3>
+            <p>₺117,00</p>
+        </div>
+        <div class="book-card" data-id="32">
+            <img src="/images/sineklerin-tanrisi.jpg" alt="Sineklerin Tanrısı">
+            <h3>Sineklerin Tanrısı</h3>
+            <p>₺71,00</p>
+        </div>
+        <div class="book-card" data-id="33">
+            <img src="/images/cumhuriyetin-yuz-gunu.jpg" alt="Cumhuriyetin 100 Günü">
+            <h3>Cumhuriyetin 100 Günü</h3>
+            <p>₺179,00</p>
+        </div>
+        <div class="book-card" data-id="34">
+            <img src="/images/kayip-tanrilar-ulkesi.jpg" alt="Kayıp Tanrılar Ülkesi">
+            <h3>Kayıp Tanrılar Ülkesi</h3>
+            <p>₺152,00</p>
+        </div>
+        <div class="book-card" data-id="35">
+            <img src="/images/insan-anatomisi-kineziyoloji.jpg" alt="İnsan Anatomisi ve Kineziyoloji">
+            <h3>İnsan Anatomisi ve Kineziyolojii</h3>
+            <p>₺179,00</p>
+        </div>
+        <div class="book-card" data-id="36">
+            <img src="/images/Rezonans-Kanunu.jpg" alt="Rezonans Kanunu">
+            <h3>Rezonans Kanunu</h3>
+            <p>₺126,58</p>
+        </div>
+        <div class="book-card" data-id="37">
+            <img src="/images/Veba-Geceleri.jpg" alt="Veba Geceleri">
+            <h3>Veba Geceleri</h3>
+            <p>₺135,00</p>
+        </div>
+        <div class="book-card" data-id="38">
+            <img src="/images/seneler.jpg" alt="Seneler">
+            <h3>Seneler</h3>
+            <p>₺147,00</p>
+        </div>
+        <div class="book-card" data-id="39">
+            <img src="/images/ince-memed-1.jpg" alt="İnce Memed 1">
+            <h3>İnce Memed 1</h3>
+            <p>₺191,00</p>
+        </div>
+        <div class="book-card" data-id="40">
+            <img src="/images/bu-ulke.jpg" alt="Bu Ülke">
+            <h3>Bu Ülke</h3>
+            <p>₺156,00</p>
+        </div>
+        <div class="book-card" data-id="41">
+            <img src="/images/cantamdan-fil-cikti.jpg" alt="Çantamdan Fil Çıktı">
+            <h3>Çantamdan Fil Çıktı</h3>
+            <p>₺93,00</p>
+        </div>
+        <div class="book-card" data-id="42">
+            <img src="/images/balikci-oglu.jpg" alt="Balıkçı ve Oğlu">
+            <h3>Balıkçı ve Oğlu</h3>
+            <p>₺83,00</p>
+        </div>
+        <div class="book-card" data-id="43">
+            <img src="/images/acil-servis.jpg" alt="Erişkin Acil Servis Order">
+            <h3>Erişkin Acil Servis Order</h3>
+            <p>₺357,50</p>
+        </div>
+        <div class="book-card" data-id="44">
+            <img src="/images/gurur-ve-onyargi.jpg" alt="Gurur ve Önyargı">
+            <h3>Gurur ve Önyargı</h3>
+            <p>₺27,60</p>
+        </div>
+        <div class="book-card" data-id="45">
+            <img src="/images/sanatin-kisa-oykusu.jpg" alt="Sanatın Kısa Öyküsü">
+            <h3>Sanatın Kısa Öyküsü</h3>
+            <p>₺305,75</p>
+        </div>
+        <div class="book-card" data-id="46">
+            <img src="/images/is-hukuk.jpg" alt="İş Hukuku">
+            <h3>İş Hukuku</h3>
+            <p>₺406,20</p>
+        </div>
+        <div class="book-card" data-id="47">
+            <img src="/images/ayvayi-yedik-muzesi.jpg" alt="Ayvayı Yedik Müzesi">
+            <h3>Ayvayı Yedik Müzesi</h3>
+            <p>₺63,00</p>
+        </div>
+        <div class="book-card" data-id="48">
+            <img src="/images/nasreddin-hoca.jpg" alt="Nasreddin Hoca Hikayeleri">
+            <h3>Nasreddin Hoca Hikayeleri</h3>
+            <p>₺18,90</p>
+        </div>
+        <div class="book-card" data-id="49">
+            <img src="/images/yasli-adam-ve-deniz.jpg" alt="Yaşlı Adam ve Deniz">
+            <h3>Yaşlı Adam ve Deniz</h3>
+            <p>₺85,00</p>
+        </div>
+        <div class="book-card" data-id="50">
+            <img src="/images/dikis-teknikleri.jpg" alt="Dikiş Teknikleri">
+            <h3>Dikiş Teknikleri</h3>
+            <p>₺540,00</p>
+        </div>
+        <div class="book-card" data-id="51">
+            <img src="/images/turk-inkilap-tarihi.jpg" alt="Türk İnkılap Tarihi">
+            <h3>Türk İnkılap Tarihi</h3>
+            <p>₺422,88</p>
+        </div>
+        <div class="book-card" data-id="52">
+            <img src="/images/icimizdeki-seytan.jpg" alt="İçimizdeki Şeytan">
+            <h3>İçimizdeki Şeytan</h3>
+            <p>₺28,45</p>
+        </div>
+        <div class="book-card" data-id="53">
+            <img src="/images/gelistiren-anne-baba.jpg" alt="Geliştiren Anne-Baba">
+            <h3>Geliştiren Anne-Baba</h3>
+            <p>₺160,50</p>
+        </div>
+        <div class="book-card" data-id="54">
+            <img src="/images/harry-potter.jpg" alt="Harry Potter ve Ateş Kadehi">
+            <h3>Harry Potter ve Ateş Kadehi</h3>
+            <p>₺186,00</p>
+        </div>
+        <div class="book-card" data-id="55">
+            <img src="/images/zaman-makinesi.jpg" alt="Zaman Makinesi">
+            <h3>Zaman Makinesi</h3>
+            <p>₺36,00</p>
+        </div>
+        <div class="book-card" data-id="56">
+            <img src="/images/cografya-soru-bankasi.jpg" alt="9. Sınıf Coğrafya Tematik Soru Bankası">
+            <h3>9. Sınıf Coğrafya Tematik Soru Bankası</h3>
+            <p>₺186,00</p>
+        </div>
+    </div>
+</main>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sepetim sayfasına yönlendirme
+            document.querySelector('.cart').addEventListener('click', function () {
+                window.location.href = 'sepetim.html';
+            });
+
+            // Kitap kartlarına tıklama olayı
+            document.querySelectorAll('.book-card').forEach(function (card) {
+                card.addEventListener('click', function () {
+                    const BookID = this.getAttribute('data-id');
+                    window.location.href = `/kitapDetay/${BookID}`;
+                });
+            });
+        });
+    </script>
+}

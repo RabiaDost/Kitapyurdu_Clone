@@ -1,0 +1,133 @@
+﻿@page "{id:int}"
+@model Kitapyurdu_Clone.Pages.dergiDetayModel
+@{
+    ViewData["Title"] = Model.Magazine?.Title;
+}
+
+@Html.AntiForgeryToken()
+
+<div class="product-details">
+    <div class="product-image">
+        <img src="@Model.Magazine?.ImagePath" alt="@Model.Magazine?.Title">
+    </div>
+    <div class="product-info">
+        <h1>@Model.Magazine?.Title</h1>
+        <p class="price">@Model.Magazine?.Price.ToString("C")</p>
+        <p class="stock">Stok Durumu: @(Model.Magazine?.Stock > 0 ? "Stokta var" : "Stokta yok")</p>
+        @if (Model.Magazine?.Stock > 0)
+        {
+            <button class="add-to-cart" onclick="addToCart(@Model.Magazine.DergiID)">Sepete Ekle</button>
+        }
+        else
+        {
+            <button class="add-to-cart" disabled>Stokta Yok</button>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        async function addToCart(dergiId) {
+            try {
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                console.log('Token:', token);
+                console.log('DergiId:', dergiId);
+
+                const response = await fetch(`/dergiDetay/${dergiId}?handler=AddToCart`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    },
+                    body: JSON.stringify({ dergiId: dergiId })
+                });
+
+                console.log('Response status:', response.status);
+                const responseText = await response.text();
+                console.log('Response text:', responseText); 
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = JSON.parse(responseText);
+
+                if (result.success) {
+                    alert(result.message);
+                    const cartCount = document.getElementById('cart-items-empty');
+                    if (cartCount) {
+                        cartCount.textContent = result.cartItemCount > 0
+                            ? `Sepetinizde ${result.cartItemCount} ürün var`
+                            : 'Sepetiniz boş';
+                    }
+                } else {
+                    alert(result.message || 'Bir hata oluştu');
+                }
+            } catch (error) {
+                console.error('Hata detayı:', error);
+                alert('Bir hata oluştu: ' + error.message);
+            }
+        }
+    </script>
+}
+
+<style>
+    .product-details {
+        display: flex;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 40px;
+    }
+
+    .product-image {
+        flex: 0 0 400px;
+    }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+    .product-info {
+        flex: 1;
+    }
+
+        .product-info h1 {
+            margin: 0 0 20px 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+    .price {
+        font-size: 24px;
+        color: #e44d26;
+        margin: 10px 0;
+    }
+
+    .stock {
+        color: #666;
+        margin: 10px 0;
+    }
+
+    .add-to-cart {
+        background-color: #e44d26;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+        .add-to-cart:hover {
+            background-color: #c73e1d;
+        }
+
+        .add-to-cart:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+</style>

@@ -1,0 +1,66 @@
+﻿@page
+@model Kitapyurdu_Clone.Pages.loginModel
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "_Layout";
+
+    // Oturumda kullanıcı bilgisi kontrol ediliyor
+    var isUserLoggedIn = !string.IsNullOrEmpty(HttpContext.Session.GetString("UserEmail"));
+    var userEmail = HttpContext.Session.GetString("UserEmail");
+}
+@section Styles {
+    <link rel="stylesheet" href="/css/login.css" />
+}
+
+<main>
+    <div class="login-container">
+        <div class="login-box">
+            @if (isUserLoggedIn)
+            {
+                <h2>Merhaba, @userEmail</h2>
+                <form method="get" asp-page="login" asp-route-handler="Logout">
+                    <button type="submit" class="logout-button">Çıkış Yap</button>
+                </form>
+            }
+            else
+            {
+                <h2>Hoşgeldiniz</h2>
+                @if (!string.IsNullOrEmpty(Model.LoginError))
+                {
+                    <p class="error-message">@Model.LoginError</p>
+                }
+                <form method="post">
+                    <label for="email">E-Posta</label>
+                    <input type="email" id="email" name="email" placeholder="E-Posta" required>
+
+                    <label for="password">Şifre</label>
+                    <div class="password-field">
+                        <input type="password" id="password" name="password" placeholder="Şifre" required>
+                        <span class="toggle-password">👁️</span>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Beni Hatırla</label>
+                        <a asp-page="/forgotPassword" class="forgot-password">Şifremi Unuttum</a>
+                    </div>
+
+                    <button type="submit" class="login-button">Giriş Yap</button>
+                    <a href="/register" class="signup-button">Ücretsiz Üye Ol</a>
+                </form>
+            }
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script>
+        // Şifre göster/gizle işlevselliği
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            const passwordField = document.querySelector('#password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+    </script>
+}

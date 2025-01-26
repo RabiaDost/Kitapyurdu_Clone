@@ -1,0 +1,134 @@
+﻿@page "/MainPage"
+@model Kitapyurdu_Clone.Pages.MainPageModel
+@{
+    ViewData["Title"] = "Kitapyurdu,kitapla buluşmanın en kolay yolu";
+    Layout = "_Layout";
+}
+
+<div class="section haftanin-yayinevi">
+    <h3>Haftanın Yayınevi Kitapları</h3>
+    <div class="yayinevi-container">
+        <div class="yayinevi">
+            <img src="/images/outliers.jpg" alt="Outliers Kitabı">
+            <p>Outliers (Çizginin Dışındakiler)</p>
+            <span class="price">₺186,00</span>
+        </div>
+        <div class="yayinevi">
+            <img src="/images/yalin-startup.jpg" alt="Yalın Startup">
+            <p>Yalın Startup</p>
+            <span class="price">₺184,80</span>
+        </div>
+        <div class="yayinevi">
+            <img src="/images/mor-inek.jpg" alt="Mor İnek">
+            <p>Mor İnek</p>
+            <span class="price">₺126,00</span>
+        </div>
+        <div class="yayinevi">
+            <img src="/images/a-dan-zye-pazarlama.jpg" alt="A'dan Z'ye Pazarlama">
+            <p>A'dan Z'ye Pazarlama</p>
+            <span class="price">₺186,00</span>
+        </div>
+        <div class="yayinevi">
+            <img src="/images/anlamin-sarkisi.jpg" alt="Anlamın Şarkısı">
+            <p>Anlamın Şarkısı</p>
+            <span class="price">₺142,00</span>
+        </div>
+    </div>
+</div>
+
+<div class="section ayin-yayinevleri">
+    <h3>Ayın Yayınevleri</h3>
+    <div class="yayinevleri-logos">
+        <img src="/images/kete-logo.jpg" alt="Kete Yayınları">
+        <img src="/images/pinhan-logo.jpg" alt="Pinhan Yayınları">
+        <img src="/images/hepkitap-logo.jpg" alt="Hep Kitap">
+        <img src="/images/fol-logo.jpg" alt="Fol Kitap">
+        <img src="/images/albaraka-logo.jpg" alt="Albaraka Yayınları">
+        <img src="/images/otto-logo.jpg" alt="OttoKitap">
+        <img src="/images/takdim-logo.jpg" alt="Takdim Kitap">
+        <img src="/images/redhouse-logo.jpg" alt="Redhouse-Kidz">
+        <img src="/images/lapis-logo.png" alt="Lapis Kitap">
+        <img src="/images/pegasus-logo.png" alt="Pegasus Kitap">
+    </div>
+</div>
+
+<div class="section ayin-yazarları">
+    <h3>Ayın Yazarları</h3>
+    <div class="yazarlar-container">
+        <div class="yazar">
+            <img src="/images/ahmet-umit.jpg" alt="Ahmet Ümit">
+            <p>Ahmet Ümit</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/mina-urgan.jpg" alt="Mina Urgan">
+            <p>Mina Urgan</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/dostoyevski.jpg" alt="Fyodor M. Dostoyevski">
+            <p>Fyodor M. Dostoyevski</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/sabahattin-ali.jpg" alt="Sabahattin Ali">
+            <p>Sabahattin Ali</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/dogan-cuceloglu.jpg" alt="Doğan Cüceloğlu">
+            <p>Doğan Cüceloğlu</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/cengiz-aytmatov.jpg" alt="Cengiz Aytmatov">
+            <p>Cengiz Aytmatov</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/zulfu-livaneli.jpg" alt="Zülfü Livaneli">
+            <p>Zülfü Livaneli</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/carl-gustav-jung.jpg" alt="Carl Gustav Jung">
+            <p>Carl Gustav Jung</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/j-k-rowling.jpg" alt="J.K.Rowling">
+            <p>J.K.Rowling</p>
+        </div>
+        <div class="yazar">
+            <img src="/images/jose-saramago.jpg" alt="Jose Saramago">
+            <p>Jose Saramago</p>
+        </div>
+    </div>
+</div>
+
+<div class="section ne-okusam">
+    <h3>Ne Okusam?</h3>
+    <div class="ikonlar-container">
+        <div class="ikon">
+            <img src="/images/okur-odulleri.png" alt="Okur Ödülleri">
+            <p>Okur Ödülleri</p>
+        </div>
+        <div class="ikon">
+            <img src="/images/hep-okunanlar.png" alt="Hep Okunanlar">
+            <p>Hep Okunanlar</p>
+        </div>
+        <div class="ikon">
+            <img src="/images/en-cok-yorum-alanlar.png" alt="En Çok Yorum Alanlar">
+            <p>En Çok Yorum Alanlar</p>
+        </div>
+        <div class="ikon">
+            <img src="/images/en-cok-hediye-edilenler.png" alt="En Çok Hediye Edilenler">
+            <p>En Çok Hediye Edilenler</p>
+        </div>
+        <div class="ikon">
+            <img src="/images/en-cok-begenilenler.png" alt="En Çok Beğenilenler">
+            <p>En Çok Beğenilenler</p>
+        </div>
+        <div class="ikon">
+            <img src="/images/dunya-klasikleri.png" alt="Dünya Klasikleri">
+            <p>Dünya Klasikleri</p>
+        </div>
+        <div class="ikon">
+            <img src="/images/turk-klasikleri.png" alt="Türk Klasikleri">
+            <p>Türk Klasikleri</p>
+        </div>
+    </div>
+</div>
+

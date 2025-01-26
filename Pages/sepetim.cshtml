@@ -1,0 +1,262 @@
+﻿@page
+@model Kitapyurdu_Clone.Pages.sepetimModel
+@{
+    ViewData["Title"] = "Sepetim";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="cart-container">
+    <h1>Sepetim</h1>
+
+    @if (Model.CartItems != null && Model.CartItems.Any())
+    {
+        <div class="cart-items">
+            @foreach (var item in Model.CartItems)
+            {
+                <div class="cart-item">
+                    <img src="@item.ImagePath" alt="@item.Title">
+                    <div class="item-details">
+                        <h3>@item.Title</h3>
+                        <p class="price">@item.Price.ToString("C")</p>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity(@item.Id, '@item.Type', -1)" class="quantity-btn">-</button>
+                            <span class="quantity">@item.Quantity</span>
+                            <button onclick="updateQuantity(@item.Id, '@item.Type', 1)" class="quantity-btn">+</button>
+                            <button onclick="removeItem(@item.Id, '@item.Type')" class="remove-btn">Kaldır</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="cart-summary">
+            <div class="total">
+                <span>Toplam:</span>
+                <span class="total-price">@Model.TotalPrice.ToString("C")</span>
+            </div>
+            <button class="checkout-btn" onclick="checkoutProcess()">Alışverişi Tamamla</button>
+        </div>
+    }
+    else
+    {
+        <div class="empty-cart">
+            <p>Sepetiniz boş</p>
+            <a href="/MainPage" class="continue-shopping">Alışverişe Devam Et</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        async function updateQuantity(itemId, itemType, change) {
+            try {
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                const response = await fetch('/sepetim?handler=UpdateQuantity', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    },
+                    body: JSON.stringify({
+                        itemId: itemId,
+                        itemType: itemType,
+                        change: change
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Sunucu hatası');
+                }
+
+                const result = await response.json();
+                if (result.success) {
+                    location.reload(); // Sayfayı yenile
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Hata:', error);
+                alert('Bir hata oluştu: ' + error.message);
+            }
+        }
+
+        async function removeItem(itemId, itemType) {
+            if (!confirm('Bu ürünü sepetten kaldırmak istediğinize emin misiniz?')) {
+                return;
+            }
+
+            try {
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                const response = await fetch('/sepetim?handler=RemoveItem', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    },
+                    body: JSON.stringify({
+                        itemId: itemId,
+                        itemType: itemType
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Sunucu hatası');
+                }
+
+                const result = await response.json();
+                if (result.success) {
+                    location.reload(); // Sayfayı yenile
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Hata:', error);
+                alert('Bir hata oluştu: ' + error.message);
+            }
+        }
+
+        async function checkoutProcess() {
+            try {
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                const response = await fetch('/sepetim?handler=CheckAuth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Sunucu hatası');
+                }
+
+                const data = await response.json();
+                console.log('Auth response:', data); // Debug için
+
+                if (!data.isAuthenticated) {
+                    if (confirm('Alışverişi tamamlamak için giriş yapmanız gerekmektedir. Giriş sayfasına yönlendirilmek ister misiniz?')) {
+                        window.location.href = '/login?returnUrl=' + encodeURIComponent('/satinAl');
+                    }
+                } else {
+                    window.location.href = '/satinAl';
+                }
+            } catch (error) {
+                console.error('Auth check error:', error);
+                alert('Kimlik doğrulama kontrolü sırasında bir hata oluştu: ' + error.message);
+            }
+        }
+    </script>
+}
+
+<style>
+    .cart-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .cart-items {
+        margin-bottom: 20px;
+    }
+
+    .cart-item {
+        display: flex;
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+    }
+
+        .cart-item img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+    .item-details {
+        flex: 1;
+    }
+
+        .item-details h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+    .price {
+        color: #e44d26;
+        font-size: 18px;
+        margin: 5px 0;
+    }
+
+    .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .quantity-btn {
+        background-color: #e44d26;
+        color: white;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .quantity {
+        padding: 0 10px;
+    }
+
+    .remove-btn {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 20px;
+    }
+
+    .cart-summary {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    .total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .checkout-btn {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .empty-cart {
+        text-align: center;
+        padding: 50px;
+    }
+
+    .continue-shopping {
+        display: inline-block;
+        background-color: #e44d26;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+</style>
+
+

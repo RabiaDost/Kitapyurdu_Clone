@@ -1,0 +1,182 @@
+﻿@page
+@model Kitapyurdu_Clone.Pages.kirtasiyeModel
+@{
+    ViewData["Title"] = "Kırtasiye Çeşitleri ve Fiyatları";
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="/css/kirtasiye.css" />
+}
+<main>
+    <div class="kirtasiye-container">
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-a4-paketi.jpg" alt="A4 Paketi">
+            <h3>A4 Paketi</h3>
+            <p>₺88,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-ajanda.jpg" alt="Ajanda">
+            <h3>Ajanda</h3>
+            <p>₺70,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-aktivite-seti.jpg" alt="Boya ve Aktivite Seti">
+            <h3>Boya ve Aktivite Seti</h3>
+            <p>₺120,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-defter.jpg" alt="Defter">
+            <h3>Defter</h3>
+            <p>₺38,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-delgec.jpg" alt="Delgeç">
+            <h3>Delgeç</h3>
+            <p>₺40,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-dosya.jpg" alt="Dosya">
+            <h3>Dosya</h3>
+            <p>₺28,90</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-fosforlu-kalem.jpg" alt="Fosforlu Kalem">
+            <h3>Fosforlu Kalem</h3>
+            <p>₺48,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-frozen-seti.jpg" alt="Frozen Set">
+            <h3>Frozen Set</h3>
+            <p>₺144,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-kalem-kutusu1.jpg" alt="Kalem Kutusu">
+            <h3>Kalem Kutusu</h3>
+            <p>₺90,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-kral-sakir-seti.jpg" alt="Kral Şakir Seti">
+            <h3>Kral Şakir Seti</h3>
+            <p>₺200,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-kirtasiye-seti.jpg" alt="Kırtasiye Set">
+            <h3>Kırtasiye Set</h3>
+            <p>₺150,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-kalem-kutusu2.jpg" alt="Kalem Kutusu">
+            <h3>Kalem Kutusu</h3>
+            <p>₺85,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-kuromi-seti.jpg" alt="Kuromi Set">
+            <h3>Kuromi Set</h3>
+            <p>₺137,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-masa-lambasi.jpg" alt="Masa Lambası">
+            <h3>Masa Lambası</h3>
+            <p>₺199,90</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-masa-takvimi.jpg" alt="Masa Takvimi">
+            <h3>Masa Takvimi</h3>
+            <p>₺75,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-not-kagidi.jpg" alt="Not Kağıdı">
+            <h3>Not Kağıdı</h3>
+            <p>₺46,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-silgi.jpg" alt="Silgi">
+            <h3>Silgi</h3>
+            <p>₺20,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-okul-defteri.jpg" alt="Okul Defteri">
+            <h3>Okul Defteri</h3>
+            <p>₺50,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-playdoh-seti.jpg" alt="Play-Doh">
+            <h3>Play-Doh</h3>
+            <p>₺130,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-post-it.jpg" alt="Post-It">
+            <h3>Post-It</h3>
+            <p>₺25,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-renkli-kalemler.jpg" alt="Renkli Kalemler">
+            <h3>Renkli Kalemler</h3>
+            <p>₺70,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-silgi2.jpg" alt="Silgi">
+            <h3>Silgi</h3>
+            <p>₺20,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-tukenmez-kalem.jpg" alt="Tükenmez Kalem">
+            <h3>Tükenmez Kalem</h3>
+            <p>₺18,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-uc.jpg" alt="Uç">
+            <h3>Uç</h3>
+            <p>₺14,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-sticker.jpg" alt="Sticker">
+            <h3>Sticker</h3>
+            <p>₺8,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-yapiskan-notlar.jpg" alt="Yapışkan Notlar">
+            <h3>Yapışkan Notlar</h3>
+            <p>₺30,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-tukenmez-kalem2.jpg" alt="Tükenmez Kalem">
+            <h3>Tükenmez Kalem</h3>
+            <p>₺17,50</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-uc2.jpg" alt="Uç">
+            <h3>Uç</h3>
+            <p>₺15,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-yapiskan-not.jpg" alt="Not Kağıdı">
+            <h3>Not Kağıdı</h3>
+            <p>₺20,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-zimba.jpg" alt="Zımba">
+            <h3>Zımba</h3>
+            <p>₺60,00</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-okul-paketi.jpg" alt="Okul Paketi">
+            <h3>Okul Paket</h3>
+            <p>₺199,99</p>
+        </div>
+        <div class="kirtasiye-card">
+            <img src="/images/kirtasiye-boya-seti.jpg" alt="Boya Seti">
+            <h3>Boya Seti</h3>
+            <p>₺120,00</p>
+        </div>
+    </div>
+</main>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('.cart').addEventListener('click', function () {
+                window.location.href = 'sepetim.html';
+            });
+        });
+    </script>
+}

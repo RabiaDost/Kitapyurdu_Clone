@@ -1,0 +1,307 @@
+﻿@using Microsoft.AspNetCore.Http
+@using System.Text.Json
+@using Kitapyurdu_Clone.Pages.Models
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var isUserLoggedIn = !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("UserName"));
+    var userName = HttpContextAccessor.HttpContext.Session.GetString("UserName");
+    var cartJson = HttpContextAccessor.HttpContext.Session.GetString("Cart");
+    var cartItemCount = 0;
+    if (!string.IsNullOrEmpty(cartJson))
+    {
+        try
+        {
+            var cart = JsonSerializer.Deserialize<List<CartItem>>(cartJson);
+            if (cart != null)
+            {
+                cartItemCount = cart.Sum(item => item.Quantity);
+            }
+        }
+        catch { }
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/MainPage.css" />
+    <link rel="icon" href="/images/favicon.ico">
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <!-- Üst Menü -->
+            <div class="welcome">
+                @if (isUserLoggedIn)
+                {
+                    <div class="menu-top-button-welcome">Merhaba, @userName</div>
+                    <div class="menu-top-button-logout">
+                        <a href="/login?handler=Logout" class="logout-link">Çıkış Yap</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="menu-top-button-login"><a asp-page="/login">Giriş Yap</a></div>
+                    <div class="menu-top-button-register"><a asp-page="/register">Üye Ol</a></div>
+                }
+            </div>
+            <!-- Ana Menü -->
+            <div class="menu-top">
+                <div class="menu-item">
+                    <a href="#">Listelerim</a>
+                    <ul>
+                        <li><a asp-page="#">Favorilerim</a></li>
+                        <li><a asp-page="#">Alışveriş Listem</a></li>
+                        <li><a asp-page="#">Okuma Listelerim</a></li>
+                        <li><a asp-page="#">Ürün Takip Listem</a></li>
+                        <li><a asp-page="#">Fiyat Alarmı Listem</a></li>
+                        <li><a asp-page="#">Satın Aldıklarım</a></li>
+                    </ul>
+                </div>
+                <div class="menu-item">
+                    <a asp-page="#">Sipariş Takibi</a>
+                    <ul>
+                        <li><a asp-page="/siparislerim">Siparişlerim</a></li>
+                    </ul>
+                </div>
+                <div class="menu-item">
+                    <a asp-page="#">Türkçe</a>
+                    <ul>
+                        <li><a asp-page="#">English</a></li>
+                        <li><a asp-page="#">Deutsch</a></li>
+                    </ul>
+                </div>
+                <div class="menu-item">
+                    <a asp-page="#">TL</a>
+                    <ul>
+                        <li><a asp-page="#">EUR</a></li>
+                        <li><a asp-page="#">GBP</a></li>
+                        <li><a asp-page="#">USD</a></li>
+                    </ul>
+                </div>
+                <div class="menu-item">
+                    <a asp-page="#">Yardım</a>
+                    <ul>
+                        <li><a asp-page="#">Yardım ve İşlem Rehberi</a></li>
+                        <li><a asp-page="#">Sıkça Sorulan Sorular</a></li>
+                        <li><a asp-page="#">Video Yardım</a></li>
+                        <li><a asp-page="#">Önerim Var</a></li>
+                        <li><a asp-page="#">İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <!-- Header bottom-->
+        <div id="header-bottom">
+            <div class="logo-icon">
+                <a asp-page="MainPage.cshtml">
+                    <img src="/images/kitapyurdu-logo.png" alt="Kitap Yurdu" width="95" height="75">
+                </a>
+            </div>
+            <div class="logo-text">
+                <a asp-page="MainPage.cshtml">
+                    <img src="/images/kitapyurdu-yazi-logo.png" alt="Kitap Yurdu" width="260" height="74">
+                </a>
+            </div>
+            <div id="search">
+                <form method="get" action="/searchbook">
+                    <input id="search-input" type="text" name="search" placeholder="Kitap adı, yazar veya yayınevi ara">
+                    <button type="submit" class="common-sprite button-search">Ara</button>
+                </form>
+            </div>
+            <div id="cart">
+                <div class="cart">
+                    <span class="cart-icon">🛒</span>
+                    <span>Sepetim</span>
+                </div>
+                <div id="cart-items-empty">Sepetiniz boş</div>
+            </div>
+    </header>
+
+    <div id="navbar">
+        <ul class="main-menu">
+            <li><a asp-page="/kitap">Kitap</a></li>
+            <li><a asp-page="/dergi">Dergi</a></li>
+            <li><a asp-page="/hobiOyuncak">Hobi & Oyuncak</a></li>
+            <li><a asp-page="/kirtasiye">Kırtasiye</a></li>
+            <li><a asp-page="#">Kırkambar</a></li>
+            <li><a asp-page="/AllCategories">Tüm Kategoriler</a></li>
+            <li><a asp-page="#" class="campaign">Kampanyalar</a></li>
+            <li><a asp-page="#" class="puan">Puan Kataloğu</a></li>
+        </ul>
+    </div>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="footer-section">
+                <h3>Mobil Uygulamalar:</h3>
+                <div class="app-links">
+                    <a asp-page="https://itunes.apple.com/tr/app/kitapyurdu/id489855982?mt=8" title="App Store'dan İndirin" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/app-store-logo.png" alt="App Store" width="108">
+                    </a>
+                    <a asp-page="https://play.google.com/store/apps/details?id=com.mobisoft.kitapyurdu" title="Google Play'den Alın" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/google-play-logo.png" alt="Google Play" width="120">
+                    </a>
+                    <a asp-page="https://appgallery.huawei.com/#/app/C101554873" title="AppGallery ile Keşfedin" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/app-gallery-logo.png" alt="App Gallery" width="120">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Sosyal Medya:</h3>
+                <div class="social-links">
+                    <a asp-page="https://www.instagram.com/kitapyurducom" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <img src="/images/instagram-icon.png" alt="Instagram" width="30">
+                    </a>
+                    <a asp-page="https://x.com/kitapyurducom" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                        <img src="/images/twitter-icon.png" alt="Twitter" width="30">
+                    </a>
+                    <a asp-page="https://www.facebook.com/kitapyurducom" target="_blank" rel="noopener noreferrer" title="Facebook">
+                        <img src="/images/facebook-icon.png" alt="Facebook" width="30">
+                    </a>
+                    <a asp-page="https://www.youtube.com/kitapyurdu" target="_blank" rel="noopener noreferrer" title="YouTube">
+                        <img src="/images/youtube-icon.png" alt="YouTube" width="30">
+                    </a>
+                    <a asp-page="https://www.whatsapp.com/kitapyurdu" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                        <img src="/images/whatsapp-icon.png" alt="WhatsApp" width="30">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <div class="link-column">
+                <h3>Yardımcı Sayfalar:</h3>
+                <ul>
+                    <li><a asp-page="yardim">Yardım ve İşlem Rehberi</a></li>
+                    <li><a asp-page="yardim/video">Video Yardım</a></li>
+                    <li><a asp-page="havale-eft">Havale/EFT Bilgileri</a></li>
+                    <li><a asp-page="iletisim">Müşteri Hizmetleri</a></li>
+                    <li><a asp-page="platin-uyelik">Platin Üyelik</a></li>
+                    <li><a asp-page="gumus-uyelik">Gümüş Üyelik</a></li>
+                    <li><a asp-page="teslim-noktalari">Teslim Noktaları</a></li>
+                </ul>
+            </div>
+
+            <div class="link-column">
+                <h3>Popüler Sayfalar:</h3>
+                <ul>
+                    <li><a asp-page="cok-satan-kitaplar/haftalik/1.html">Çok Satan Kitaplar</a></li>
+                    <li><a asp-page="yeni-cikan-kitaplar/haftalik/2.html">Yeni Çıkan Kitaplar</a></li>
+                    <li><a asp-page="kargo-odeyen-avantajli-urunler/haftalik/3.html">Kargo Ödeyen Avantajlı Ürünler</a></li>
+                    <li><a asp-page="kampanyalar">Kampanyalar</a></li>
+                    <li><a asp-page="ayin-yazarlari/haftalik/5.html">Ayın Yazarları</a></li>
+                    <li><a asp-page="ayin-yayinevleri/haftalik/6.html">Ayın Yayınevleri</a></li>
+                    <li><a asp-page="puan-katalogu/haftalik/7.html">Puan Kataloğu</a></li>
+                    <li><a asp-page="e-dergi/haftalik/8.html">E-Dergi</a></li>
+                    <li><a asp-page="ne-okusam/haftalik/9.html">Ne Okusam?</a></li>
+                    <li><a asp-page="kelepir-kitaplar/haftalik/10.html">Kelepir Kitaplar</a></li>
+                    <li><a asp-page="kitap-hediye-kartlari/haftalik/11.html">Kitap Hediye Kartları</a></li>
+
+                </ul>
+            </div>
+
+            <div class="link-column">
+                <h3>Özel Sayfalar:</h3>
+                <ul>
+                    <li><a asp-page="sinav-kitaplari">Sınav Kitapları</a></li>
+                    <li><a asp-page="cocuk-kitaplari">Çocuk Kitapları</a></li>
+                    <li><a asp-page="cep-boy-kitaplar">Cep Boy Kitaplar</a></li>
+                    <li><a asp-page="ingilizce-kitaplar">İngilizce Kitaplar</a></li>
+                    <li><a asp-page="bookinzi-kultur-sanat-urunleri">Bookinzi Kültür-Sanat Ürünleri</a></li>
+                    <li><a asp-page="oyundan-daha-fazlasi">Oyundan Daha Fazlası</a></li>
+                    <li><a asp-page="montessori-oyuncaklari">Montessori Oyuncakları</a></li>
+                    <li><a asp-page="king-of-puzzle-urunleri">King of Puzzle Ürünleri </a></li>
+                    <li><a asp-page="akil-defteri">Akıl Defteri</a></li>
+                </ul>
+            </div>
+
+            <div class="link-column">
+                <h3>Kitapyurdu Platformları:</h3>
+                <ul>
+                    <li><a asp-page="kitapyurdu-sesli-kitap">Kitapyurdu Sesli Kitap</a></li>
+                    <li><a asp-page="kitapyurdu-e-kitap">Kitapyurdu E-Kitap</a></li>
+                    <li><a asp-page="kutuphanem-uygulamasi">Kütüphanem Uygulaması</a></li>
+                    <li><a asp-page="Kitapyurdu-chrome-eklentileri">Kitapyurdu Chrome Eklentileri</a></li>
+                    <li><a asp-page="onayli-yorumlar">Onaylı Yorumlar</a></li>
+                    <li><a asp-page="kdy-platformu">KDY Platformu</a></li>
+                    <li><a asp-page="kdd-platformu">KDD Platformu</a></li>
+                    <li><a asp-page="kitap-dergisi">Kitapdergisi.com</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-pay-section">
+            <div class="card-options">
+                <h4>Taksitli Alışveriş Yapabileceğiniz Kredi Kartları:</h4>
+                <div class="card-logos">
+                    <img src="/images/axess-logo.png" alt="Axess">
+                    <img src="/images/bonus-logo.png" alt="Bonus">
+                    <img src="/images/maximum-logo.png" alt="Maximum">
+                    <img src="/images/paraf-logo.png" alt="Paraf">
+                    <img src="/images/world-logo.png" alt="World">
+                    <img src="/images/bankkart-logo.png" alt="Bankkart">
+                </div>
+                <a href="taksit-secenekleri" class="credit-card-details">Taksit seçeneklerini detaylı incelemek için</a>
+            </div>
+            <div class="payment-options">
+                <h4>Güvenli ve Kolay Alışveriş:</h4>
+                <div class="payment-logos">
+                    <img src="/images/mastercard-logo.png" alt="Mastercard" width="50" height="auto">
+                    <img src="/images/visa-logo.png" alt="Visa" width="50" height="auto">
+                    <img src="/images/troy-logo.png" alt="Troy" width="50" height="auto">
+                    <img src="/images/masterpass-logo.png" alt="Masterpass" width="50" height="auto">
+                    <img src="/images/bkm-express-logo.png" alt="BKM Express" width="50" height="auto">
+                </div>
+                <span>Havale, EFT veya Posta Çeki ile alışveriş yapabilirsiniz.</span>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Kitapyurdu Yayıncılık ve İletişim A.Ş. Tüm Hakları Saklıdır.</p>
+            <p><a asp-page="iletisim">İletişim</a> | <a asp-page="hakkimizda">Hakkımızda</a> | <a asp-page="kvkk">Kişisel Verilerin Korunması</a> | <a asp-page="çerezayarları"> Çerez Ayarları</a> </a></p>
+        </div>
+    </footer>
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cartIcon = document.querySelector("#cart-items-empty");
+            const cartItemCount = @cartItemCount;
+
+            if (cartItemCount > 0) {
+                cartIcon.innerHTML = `Sepetinizde ${cartItemCount} ürün var`;
+            } else {
+                cartIcon.innerHTML = "Sepetiniz boş";
+            }
+
+            document.querySelector(".cart").addEventListener("click", function () {
+                window.location.href = "/sepetim";
+            });
+        });
+
+        function handleLogout(event) {
+            event.preventDefault();
+            fetch(event.target.action, {
+                method: 'POST',
+                credentials: 'include'
+            }).then(() => {
+                window.location.reload();
+            });
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+﻿@page
+@model Kitapyurdu_Clone.Pages.siparislerimModel
+@{
+    ViewData["Title"]="Siparişlerim";
+    Layout = "_Layout";
+}
+
+<div class="orders-container">
+    <h1>Siparişlerim</h1>
+
+    @if (Model.Orders != null && Model.Orders.Any())
+    {
+        @foreach (var order in Model.Orders)
+        {
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-info">
+                        <span class="order-date">Sipariş Tarihi: @order.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
+                        <span class="order-number">Sipariş No: @order.OrderID</span>
+                    </div>
+                    <div class="order-total">
+                        Toplam: @order.TotalAmount.ToString("C")
+                    </div>
+                </div>
+
+                <div class="order-items">
+                    @foreach (var item in order.OrderDetails)
+                    {
+                        <div class="order-item">
+                            <div class="item-info">
+                                <h3>@item.ProductTitle</h3>
+                                <p>Adet: @item.Quantity</p>
+                                <p>Birim Fiyat: @item.Price.ToString("C")</p>
+                            </div>
+                            <div class="item-type">
+                                @(item.ProductType == "Book" ? "Kitap" : "Dergi")
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="no-orders">
+            <p>Henüz siparişiniz bulunmamaktadır.</p>
+            <a href="/MainPage" class="shop-now-btn">Alışverişe Başla</a>
+        </div>
+    }
+</div>
+
+<style>
+    .orders-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .order-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .order-header {
+        background: #f8f9fa;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .order-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .order-date, .order-number {
+        color: #666;
+        font-size: 0.9em;
+    }
+
+    .order-total {
+        font-weight: bold;
+        color: #e44d26;
+    }
+
+    .order-items {
+        padding: 15px;
+    }
+
+    .order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .order-item:last-child {
+        border-bottom: none;
+    }
+
+    .item-info h3 {
+        margin: 0 0 5px 0;
+        color: #333;
+    }
+
+    .item-info p {
+        margin: 3px 0;
+        color: #666;
+    }
+
+    .item-type {
+        background: #e44d26;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+
+    .no-orders {
+        text-align: center;
+        padding: 50px;
+    }
+
+    .shop-now-btn {
+        display: inline-block;
+        background: #e44d26;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-top: 20px;
+    }
+
+    .shop-now-btn:hover {
+        background: #c73e1d;
+    }
+</style>
